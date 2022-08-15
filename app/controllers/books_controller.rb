@@ -6,10 +6,12 @@ class BooksController < ApplicationController
  end
 
  def show
-  @book = Book.new
+  # レコード1件のみ取得するため、インスタンス変数名は単数形にする
+  @book = Book.find(params[:id])
  end
 
  def create
+  # データを受け取り新規登録するためのインスタンス作成
   @book = Book.new(book_params)
   @book.user_id = current_user.id
   @book.save
